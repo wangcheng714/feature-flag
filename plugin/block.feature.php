@@ -16,13 +16,12 @@ function smarty_block_feature($params, $content, Smarty_Internal_Template $templ
     if(!$repeat){
         if (isset($content)) {
             $feature_name = $params['name'];
-            $else_tag = $template->left_delimiter . "featureelse" . $template->right_delimiter;
+            $else_tag = "}else{";
             $true_false = explode($else_tag, $content, 2);
             $trueContent = (isset($true_false[0]) ? $true_false[0] : null);
             $falseContent = (isset($true_false[1]) ? $true_false[1] : null);
             //todo : call DoorKeeper.getFeature()
             $featureResult = DoorKeeper::getFeature($feature_name, $template);
-var_dump($featureResult);
             if($featureResult == "true"){
                 return $trueContent;
             }else{

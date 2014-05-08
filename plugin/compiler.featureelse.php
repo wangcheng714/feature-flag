@@ -9,8 +9,8 @@
  * Purpose:  Output featureelse tag with smarty delimiter
  * -------------------------------------------------------------
  */
-function smarty_compiler_featureelse($params, Smarty $smarty)
-{
-    return "<?php\necho '" . $smarty->left_delimiter . "featureelse" . $smarty->right_delimiter . "';\n?>";
+function smarty_compiler_featureelse($params, Smarty $smarty){
+	$strCode = '<?php }else{ ?>';
+    return $strCode;
 }
 ?>
