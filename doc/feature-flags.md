@@ -80,7 +80,9 @@
 * AfterDate ： 通过日期控制，规定日期之后时间feature为on，规定日期之前时间feature为off； 例如 2013-12-23 15:00:00
 * roles : 用户角色(暂不实现)
 
-**type是支持自定义，可以根据需求自定义type类型**
+#### type扩展
+
+* 相对路径是指相对于config目录
 
 ### 框架 ： API Flags接口
 

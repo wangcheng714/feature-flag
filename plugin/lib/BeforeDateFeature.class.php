@@ -1,6 +1,5 @@
 <?php
 
-require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "Feature.class.php");
 
 class BeforeDateFeature extends Feature{
 

@@ -30,6 +30,7 @@ class ModuleTwo extends Module{
 }
 
 class ModuleRun {
+
     public function run($moduleName){
         $module_class = new ReflectionClass($moduleName);
         $module = $module_class->newInstance();
