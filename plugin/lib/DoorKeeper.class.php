@@ -65,16 +65,13 @@ class DoorKeeper {
 	}
 
 	/**
-	 * todo : 支持插件路径可配置
-	 *    方案一 ： 通过配置文件指定目录
-	 *    方案二 ： 通过addFeatureDir接口指定扩展目录
 	 * 		
 	 *    feature 扩展既支持单独模块独立目录， 也可以feature插件共享目录
 	 */	
 	private static function getFeatureFile($featureConfig){
 		$featureType = ucfirst($featureConfig["type"]);
 		$nameSpace = $featureConfig["namespace"];
-		$systemDefaultFile = dirname(__FILE__) . DIRECTORY_SEPARATOR . $featureType . "Feature.class.php";
+		
 		if(isset(self::$featureDirs[$nameSpace])){
 			foreach(self::$featureDirs[$nameSpace] as $dir){
 				$featureFile = realpath(self::$configDir . $dir .  DIRECTORY_SEPARATOR . $featureType . "Feature.class.php");
@@ -82,12 +79,20 @@ class DoorKeeper {
 					return $featureFile;
 				}
 			}
-		}else if(isset(self::defaultDir)){
-			$userDefaultFile = self::$defaultDir . DIRECTORY_SEPARATOR . $featureType . "Feature.class.php";
-		}else if(is_file($defaultFile)){
+		}
+
+		if(isset(self::$defaultDir)){
+			$userDefaultFile = realpath(self::$defaultDir . DIRECTORY_SEPARATOR . $featureType . "Feature.class.php");
+			if(is_file($userDefaultFile)){
+				return $userDefaultFile;
+			}
+		}
+
+		$systemDefaultFile = dirname(__FILE__) . DIRECTORY_SEPARATOR . $featureType . "Feature.class.php";
+		if(is_file($systemDefaultFile)){
 			return $systemDefaultFile;
 		}else{
-			self::triggerError("Not find " . $classNames);
+			self::triggerError("Not find " . $featureType);
 		}
 
 	}
@@ -115,7 +120,7 @@ class DoorKeeper {
 				self::triggerError($className . " must extends class Feature!");
 			}
 		}else{
-			self::triggerError("Not find " . $classNames);
+			self::triggerError("Not find " . $className);
 		}
 		return null;
 	}

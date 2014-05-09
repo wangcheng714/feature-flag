@@ -47,3 +47,5 @@ var_dump(strtotime("2014-5-7 20:21:10"));
 $baiduid = "F3564929D88C591024AD44FA3E7CF565:FG=1";
 var_dump(hexdec(substr(str_ireplace(':FG=1', '', $baiduid), -6)) % 100);
 
+var_dump(is_file(false));
+
