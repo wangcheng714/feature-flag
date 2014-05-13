@@ -56,4 +56,3 @@ feature-flag
 ## 高级使用
 
 * [如何扩展自定义feature](./doc/feature-design.md)
-* [feature flag的各种使用场景](./doc/feature-case.md)

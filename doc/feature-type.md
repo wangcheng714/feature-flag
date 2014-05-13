@@ -1,12 +1,17 @@
 
-## feature-flag系统内置feature类型
+# feature-flag系统内置feature类型
 
-### Switch type
+## Switch type
 
 * 通过on/off控制feature是否生效
 * value取值 ： on或off
 
-### Percentage type
+### 使用场景
+
+* 如果采用主干开发模式：为开发完成的功能可以设定为off，不对外开放。
+* 上线某一新功能发现引起bug，修改配置文件关闭该功能，可以快速回滚到正确版本，不用重新上线代码，甚至可以将feature类型改成IP，限定特定IP使用该feature，可以线上调试。
+
+## Percentage type
 
 * 通过百分比控制feature对多少用户开发
 
@@ -14,7 +19,11 @@
 
 * value取值 ： 0-100之间，如：80
 
-### Date type
+### 使用场景
+
+* 小流量进行A/Btest
+
+## Date type
 
 * 通过时间控制，某时间之前feature生效
 * value取值 ： 具体的时间字符串，格式如下
@@ -41,6 +50,11 @@
             }
         }
 
-## 自定义feature扩展
+### 使用场景
 
-* [如何扩展自定义feature](./doc/feature-design.md)
+* 节假日活动专题页：例如6.1儿童节专题页，只需要展现一天
+* 某一功能需要特定时间上线或者下线
+
+# 自定义feature扩展
+
+* [如何扩展自定义feature](./feature-design.md)
