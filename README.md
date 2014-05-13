@@ -3,7 +3,9 @@ feature-flag
 
 ## Feature-Flag简介
 
-    Feature flag 是一个可以通过配置来控制是否打开页面某一功能，而不用重新发布代码的系统。可以做到同一份儿代码，针对不同的环境、条件决定是否展现某一功能。核心思想就是将功能的开发和代码的发布解耦。
+    Feature flag 是一个可以通过配置来控制是否打开页面某一功能，而不用重新发布代码的系统。
+    可以做到按照任意的需求、条件决定页面的某一功能是否展现。
+    核心思想就是将功能的开发和代码的发布解耦。
 
 ## 快速使用
 
@@ -32,10 +34,12 @@ feature-flag
             }
         }
 
-        featureA ： 定义的feature的命名
-        type : 该feature的类型，系统提供了集中默认的feature类型，详细说明[参考这里](./doc/feature-type.md)
+        featureA ： 具体的feature的名字
+        type : 该feature的类型，系统提供了几种默认的feature类型
         value ： 该feature的取值，具体格式请参考feature类型描述文档
         desc ： 该feature功能的文字描述，类似于代码的注释，方便以后feature的维护
+
+* [内置feature类型参考这里](./doc/feature-type.md)
 
 #### 调用feature
 
@@ -55,4 +59,8 @@ feature-flag
 
 ## 高级使用
 
-* [如何扩展自定义feature](./doc/feature-design.md)
+* [如何扩展自定义feature](./doc/feature-extends.md)
+
+## 相关连接
+
+Feature-flag系统[设计](./doc/feature-flags.md)

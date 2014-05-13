@@ -75,9 +75,7 @@
 * Switch ： 通过true/false控制feature是否生效；
 * Ip : 通过ip范围控制是否生效； 例如：172.22.1.16-172.22.1.65；
 * Percentage : 通过百分比控制；例如0.03，开发百分之三的用户；
-* BeforeDate ： 通过日期控制，规定日期之前时间feature为on，规定日期之后时间feature为off； 例如 2013-12-23 15:00:00
-* BetweenDate : 通过日期控制，规定日期之间时间feature为on，其他时间时间feature为off； 例如 2013-12-23 15:00:00 | 2013-12-23 15:00:00，feature测试两天
-* AfterDate ： 通过日期控制，规定日期之后时间feature为on，规定日期之前时间feature为off； 例如 2013-12-23 15:00:00
+* Date : 通过日期控制，规定日期之间时间feature为on，其他时间时间feature为off； 例如 2013-12-23 15:00:00 | 2013-12-23 15:00:00，feature测试两天
 * roles : 用户角色(暂不实现)
 
 #### type扩展
@@ -154,6 +152,8 @@
 block.feature.php
 
 compiler.featureelse.php
+
+**compiler插件实现方案**
 
 ### 平台
 

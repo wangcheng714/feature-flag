@@ -57,4 +57,4 @@
 
 # 自定义feature扩展
 
-* [如何扩展自定义feature](./feature-design.md)
+* [如何扩展自定义feature](./feature-extends.md)
