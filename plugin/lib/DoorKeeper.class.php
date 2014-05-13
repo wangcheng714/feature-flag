@@ -1,9 +1,5 @@
 <?php
 
-/**
- * todo : 
- *   1. 整理各种错误应该如何处理
- */
 require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "Feature.class.php");
 
 class DoorKeeper {
@@ -16,15 +12,21 @@ class DoorKeeper {
 	private static function triggerError($msg){
 		trigger_error(date('Y-m-d H:i:s') . ' ' . $msg, E_USER_ERROR);
 	}
-	
-	/**
-	 * todo ： 描述namespace的数据结构
-	 */
-	private static function _getFeature($featureName, $smarty){
-		/**
-		 * 1.  处理featureName : 有模块名前缀
-		 * 2.  load、查找config
-		 */
+
+    /**
+     * 通过featureName查找配置文件中的feature信息
+     * @param $featureName  "common:featureA"
+     * @param $smarty
+     * @return null
+     *   array(
+     *      "name" : feature名字
+     *      "namespace" : feature的命名空间
+     *      "type" ： feature的类型
+     *      "value" : feature的取值
+     *      "desc" : feature的描述信息
+     *   )
+     */
+    private static function _getFeature($featureName, $smarty){
 		$featureToken = explode(":", $featureName);
 		if(count($featureToken) > 1){
 			$strNamespace = $featureToken[0];
@@ -44,7 +46,13 @@ class DoorKeeper {
 		return null;
 	}
 
-	private static function registerFeatureMap($nameSpace, $smarty){
+    /**
+     * 读取feature定义文件，将features注册到全局数组中
+     * @param $nameSpace
+     * @param $smarty
+     * @return bool
+     */
+    private static function registerFeatureMap($nameSpace, $smarty){
 
 		$strMapName = $nameSpace . '-features';
 
@@ -64,11 +72,12 @@ class DoorKeeper {
 		return false;
 	}
 
-	/**
-	 * 		
-	 *    feature 扩展既支持单独模块独立目录， 也可以feature插件共享目录
-	 */	
-	private static function getFeatureFile($featureConfig){
+    /**
+     * 通过feature信息查找对应的feature类
+     * @param $featureConfig
+     * @return string
+     */
+    private static function getFeatureFile($featureConfig){
 		$featureType = ucfirst($featureConfig["type"]);
 		$nameSpace = $featureConfig["namespace"];
 		
@@ -97,6 +106,11 @@ class DoorKeeper {
 
 	}
 
+    /**
+     * 通过feature信息返回对应的feature实例
+     * @param $featureConfig
+     * @return string
+     */
 	private static function initFeature($featureConfig){
 		/**
 		 * 1. require对应的class文件 ： 判断文件是否存在
@@ -125,7 +139,11 @@ class DoorKeeper {
 		return null;
 	}
 
-	public static function addFeatureDir($dir){
+    /**
+     * 添加扩展feature部署的目录
+     * @param $dir
+     */
+    public static function addFeatureDir($dir){
 		if(is_dir($dir)){
 			self::$defaultDir = $dir;
 		}else{
@@ -133,7 +151,13 @@ class DoorKeeper {
 		}
 	}
 
-	public static function getFeature($featureName, $smarty){
+    /**
+     * 通过featureName查找计算对应feature是否生效
+     * @param $featureName
+     * @param $smarty
+     * @return Boolean
+     */
+    public static function getFeature($featureName, $smarty){
 		/**
 		 * 1. 调用_getFeature
 		 * 2. 调用initFeature
