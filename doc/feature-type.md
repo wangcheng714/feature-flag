@@ -32,7 +32,7 @@
         {
             "features" : {
                 "featureA" : {
-                    "type" : "beforeDate",
+                    "type" : "date",
                     "value" : "2013-12-23 15:00:00 | 2013-12-23 15:00:00", //生效时间 | 失效时间
                     "desc" : "test beforeDate feature work or not"
                 }
@@ -43,8 +43,18 @@
         {
             "features" : {
                 "featureA" : {
-                    "type" : "beforeDate",
-                    "value" : "* | 2013-12-23 15:00:00", // * 表示无穷小或者无穷大
+                    "type" : "date",
+                    "value" : "* | 2013-12-23 15:00:00", // * 表示无穷小
+                    "desc" : "test beforeDate feature work or not"
+                }
+            }
+        }
+
+        {
+            "features" : {
+                "featureA" : {
+                    "type" : "date",
+                    "value" : "2013-12-23 15:00:00 | *", // * 表示无穷大
                     "desc" : "test beforeDate feature work or not"
                 }
             }
