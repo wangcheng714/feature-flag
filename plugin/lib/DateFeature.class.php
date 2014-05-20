@@ -8,12 +8,12 @@ class DateFeature extends Feature{
 	public function getFlag(){
 		if(isset($this->value)){
 			$times = explode("|", $this->value);
-			if($times[0] == "*"){
+			if(trim($times[0]) == "*"){
                 $startStamp = 0;
 			}else{
                 $startStamp = strtotime($times[0]);
 			}
-            if($times[1] == "*"){
+            if(trim($times[1]) == "*"){
                 $endStamp = 2145953471 * 10;
             }else{
                 $endStamp = strtotime($times[1]);

@@ -60,7 +60,8 @@ class DoorKeeper {
 		foreach ($arrConfigDir as $strDir) {
 			$strPath = preg_replace('/[\\/\\\\]+/', '/', $strDir . '/' . $strMapName);
 			if (is_file($strPath . '.json')) {
-				$featureResult = json_decode(file_get_contents($strPath . '.json'), true);
+                $file = $strPath . '.json';
+				$featureResult = self::decodeJson($file);
 				self::$featureMap[$nameSpace] = $featureResult["features"];
 				if(isset($featureResult["feature_dir"])){
 					self::$featureDirs[$nameSpace] =  $featureResult["feature_dir"];
@@ -71,6 +72,29 @@ class DoorKeeper {
 		}
 		return false;
 	}
+
+    private static function decodeJson($file){
+        $result = json_decode(file_get_contents($file), true);
+        switch(json_last_error())
+        {
+            case JSON_ERROR_DEPTH:
+                $error =  ' - Maximum stack depth exceeded';
+                break;
+            case JSON_ERROR_CTRL_CHAR:
+                $error = ' - Unexpected control character found';
+                break;
+            case JSON_ERROR_SYNTAX:
+                $error = ' - Syntax error, malformed JSON';
+                break;
+            case JSON_ERROR_NONE:
+            default:
+                $error = '';
+        }
+        if (!empty($error)){
+            self::triggerError('JSON Error: ' . $error);
+        }
+        return $result;
+    }
 
     /**
      * 通过feature信息查找对应的feature类
