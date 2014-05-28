@@ -11,7 +11,9 @@ feature-flag
 
 ### 安装
 
-    * 下载plugin目录，将里面提供的插件部署到Smarty plugin目录即完成安装
+* 执行命令 lights install feature-plugin  没有使用过lights的童鞋，[参考这里](http://lightjs.duapp.com/)
+* 将feature-plugin中的插件部署到Smarty plugin目录
+
 
 ### 使用
 
@@ -19,7 +21,7 @@ feature-flag
 
 * smarty config目录添加配置文件 ： common-features.json
 
-        common为features的命名空间，在features调用是会使用
+        common为features的命名空间，在features调用是会使用，如果使用Fis(http://fis.baidu.com/)建议同模块名相同
 
 * 配置文件中定义feature ： 格式如下
 
