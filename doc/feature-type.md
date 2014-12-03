@@ -28,37 +28,32 @@
 * 通过时间控制，某时间之前feature生效
 * value取值 ： 具体的时间字符串，格式如下
 
-        ```javascript
-        {
-            "features" : {
-                "featureA" : {
-                    "type" : "date",
-                    "value" : "2013-12-23 15:00:00 | 2013-12-23 15:00:00", //生效时间 | 失效时间
-                    "desc" : "test beforeDate feature work or not"
-                }
-            }
+```javascript
+//定义
+{
+    "features" : {
+        "featureA" : {
+            "type" : "date",
+            "value" : "2013-12-23 15:00:00 | 2013-12-23 15:00:00", //生效时间 | 失效时间
+            "desc" : "test beforeDate feature work or not"
         }
+    }
+}
+{
+    "features" : {
+        "featureA" : {
+            "type" : "date",
+            "value" : "* | 2013-12-23 15:00:00", // * 表示无穷小
+            "desc" : "test beforeDate feature work or not"
+        }
+    }
+}
 
-        ```javascript
-        {
-            "features" : {
-                "featureA" : {
-                    "type" : "date",
-                    "value" : "* | 2013-12-23 15:00:00", // * 表示无穷小
-                    "desc" : "test beforeDate feature work or not"
-                }
-            }
-        }
-
-        {
-            "features" : {
-                "featureA" : {
-                    "type" : "date",
-                    "value" : "2013-12-23 15:00:00 | *", // * 表示无穷大
-                    "desc" : "test beforeDate feature work or not"
-                }
-            }
-        }
+//使用
+{%feature name="common:featureA"%}
+    html code for featureA
+{%/feature%}
+```
 
 ### 使用场景
 

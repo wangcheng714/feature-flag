@@ -14,24 +14,28 @@
 * 新建CityFeature.class.php文件
 * CityFeature需要继承Feature抽象类
 
-        class CityFeature extends Feature{
+```php
+class CityFeature extends Feature{
 
-        }
+}
+```
 
 * 实现getFlag方法 : 方法利用配置文件中的value计算、判断返回feature是否生效，生效返回ture，否则返回false
 
-        class CityFeature extends Feature{
-            public function getFlag(){
-                $client_ip = $_SERVER["REMOTE_ADDR"]; //获取用户IP
-                //调用百度哥伦布IP库获得用户城市，http://hetu.baidu.com/api/platform/index?platformId=323
-                $city = convertToCity($client_ip);
-                if($city = $this->value){
-                    return ture;
-                }else{
-                    return false;
-                }
-            }
+```php
+class CityFeature extends Feature{
+    public function getFlag(){
+        $client_ip = $_SERVER["REMOTE_ADDR"]; //获取用户IP
+        //调用百度哥伦布IP库获得用户城市
+        $city = convertToCity($client_ip);
+        if($city = $this->value){
+            return ture;
+        }else{
+            return false;
         }
+    }
+}
+```
 
 ### 配置feature扩展类部署位置
 
@@ -51,22 +55,23 @@
 
 通过上述两个简单的步骤就可以在项目中调用CityFeature了
 
-    ```javascript
-    {
-        "features" : {
-            "city-beijing" : {
-                "type" : "city",
-                "value" : "北京",
-                "desc" : "some feature for 北京"
-            }
+```javascript
+{
+    "features" : {
+        "city-beijing" : {
+            "type" : "city",
+            "value" : "北京",
+            "desc" : "some feature for 北京"
         }
     }
+}
 
-    {%feature name="common:city-beijing"%}
-        html code for 北京
-    {%featureelse%}
-        html code for other city
-    {%/feature%}
+{%feature name="common:city-beijing"%}
+    html code for 北京
+{%featureelse%}
+    html code for other city
+{%/feature%}
+```
 
 ## 场景
 
